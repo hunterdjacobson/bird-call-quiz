@@ -216,3 +216,16 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python (pipeline only)
+pipeline/venv/
+pipeline/__pycache__/
+pipeline/.env
+
+# Pipeline intermediate files (regenerable — quizBank.json itself IS committed)
+pipeline/raw_recordings.json
+pipeline/raw_photos.json
+
+# Node
+frontend/node_modules/
+frontend/dist/
