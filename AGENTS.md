@@ -12,7 +12,6 @@ static files with no backend.
 ## Tech stack (deployed app)
 - React 18 + Vite
 - Tailwind CSS
-- No backend. No database. No API server. No env vars at runtime.
 
 ## Tech stack (offline pipeline — not part of the deployed app)
 - Python 3.11+, httpx, python-dotenv
