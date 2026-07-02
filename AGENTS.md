@@ -5,7 +5,7 @@ A fully static, client-side trivia game. A round is generated entirely
 in the browser: pick a random bird from a pre-built quiz bank, pick 3
 plausible wrong answers, play its recording, and check the user's
 choice — all without any server. The quiz bank itself (audio URLs,
-photos, fun facts) is built ONCE, offline, by Python scripts that call
+photos, fun facts) is built once, offline, by Python scripts that call
 Xeno-canto and Wikipedia. The deployed app is React + Vite, shipped as
 static files with no backend.
 
@@ -13,7 +13,7 @@ static files with no backend.
 - React 18 + Vite
 - Tailwind CSS
 
-## Tech stack (offline pipeline — not part of the deployed app)
+## Tech stack (offline pipeline)
 - Python 3.11+, httpx, python-dotenv
 - Run locally only, output committed as a static JSON file
 
