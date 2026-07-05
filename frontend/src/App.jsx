@@ -1,122 +1,118 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import useGame from './hooks/useGame'
+import AudioPlayer from './components/AudioPlayer'
+import AnswerChoices from './components/AnswerChoices'
+import RoundResult from './components/RoundResult'
+import ScoreBoard from './components/ScoreBoard'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    round,
+    result,
+    score,
+    streak,
+    bestStreak,
+    selectedId,
+    difficulty,
+    submitAnswer,
+    nextRound,
+    setDifficultyLevel
+  } = useGame();
+
+  // Guard against round being null on first render
+  if (!round) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-50 p-4">
+        <div className="text-xl font-semibold text-gray-600 animate-pulse">
+          Loading bird calls...
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+    <div className="min-h-screen bg-gray-50/50 py-8 px-4 flex flex-col justify-between items-center text-gray-800 font-sans">
+      {/* Header and Quiz Interface */}
+      <main className="w-full max-w-2xl flex flex-col items-center gap-8">
+        {/* Title */}
+        <header className="text-center">
+          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 flex items-center justify-center gap-2">
+            <span>🐦</span> Bird Call Quiz
+          </h1>
+          <p className="mt-2 text-sm text-gray-500 font-medium uppercase tracking-wider">
+            Listen. Guess. Learn.
           </p>
+        </header>
+
+        {/* Difficulty Toggle */}
+        <div className="flex items-center gap-2 bg-gray-200/60 p-1 rounded-xl">
+          <button
+            type="button"
+            onClick={() => setDifficultyLevel('easy')}
+            className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+              difficulty === 'easy'
+                ? 'bg-feather-green text-white shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            Easy
+          </button>
+          <button
+            type="button"
+            onClick={() => setDifficultyLevel('hard')}
+            className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+              difficulty === 'hard'
+                ? 'bg-feather-green text-white shadow-sm'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            Hard
+          </button>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+
+        {/* Score Board */}
+        <ScoreBoard score={score} streak={streak} bestStreak={bestStreak} />
+
+        {/* Audio Player Container */}
+        <div className="w-full flex justify-center py-4">
+          <AudioPlayer key={round.targetId} audioUrl={round.audioUrl} />
+        </div>
+
+        {/* Answer Choices Grid */}
+        <AnswerChoices
+          choices={round.choices}
+          onSelect={submitAnswer}
+          disabled={!!result}
+          selectedId={selectedId}
+          correctId={result ? round.targetId : null}
+        />
+
+        {/* Result Card details */}
+        <RoundResult result={result} onNext={nextRound} />
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-12 text-center text-xs text-gray-400 font-medium">
+        Recordings via{' '}
+        <a
+          href="https://xeno-canto.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline hover:text-gray-600"
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+          Xeno-canto
+        </a>{' '}
+        · Photos via{' '}
+        <a
+          href="https://wikipedia.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:underline hover:text-gray-600"
+        >
+          Wikipedia
+        </a>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;

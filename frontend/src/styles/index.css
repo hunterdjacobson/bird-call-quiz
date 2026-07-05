@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Choice Button style */
+.choice-button {
+  @apply w-full px-6 py-4 text-left font-semibold border-2 rounded-xl transition-all duration-200 outline-none focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply bg-white border-gray-200 text-gray-800 hover:border-feather-orange hover:bg-orange-50/10 focus:ring-feather-green;
+}
+
+/* Modifier class applied when the choice is correct */
+.choice-correct {
+  @apply bg-feather-green border-feather-green text-white hover:bg-feather-green hover:border-feather-green;
+}
+
+/* Modifier class applied when the choice is incorrect */
+.choice-incorrect {
+  @apply bg-red-600 border-red-600 text-white hover:bg-red-600 hover:border-red-600;
+}
+
+/* Pulse Ring animation for the audio play button */
+.pulse-ring {
+  position: relative;
+}
+
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 3px solid #3A5A40; /* matches feather.green */
+  animation: pulse-ring-expand 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-ring-expand {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
