@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-feather-green: #3A5A40;
+  --color-feather-cream: #F4F1DE;
+  --color-feather-orange: #E07A5F;
+}
+
 /* Base Choice Button style */
 .choice-button {
   @apply w-full px-6 py-4 text-left font-semibold border-2 rounded-xl transition-all duration-200 outline-none focus:outline-none focus:ring-2 focus:ring-offset-2;
@@ -26,7 +32,7 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  border: 3px solid #3A5A40; /* matches feather.green */
+  border: 3px solid var(--color-feather-green);
   animation: pulse-ring-expand 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite;
   pointer-events: none;
 }
