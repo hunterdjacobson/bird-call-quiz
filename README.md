@@ -1,6 +1,6 @@
 # Bird Call Guessing Game
 
-[![Live Demo](https://img.shields.io/badge/demo-vercel-blue.svg)](https://bird-call-quiz.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-vercel-blue.svg)](https://bird-call-quiz.vercel-ten.app)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -59,7 +59,7 @@ Follow these steps in PowerShell to run the React frontend app locally:
 
 1. Clone the repository:
    ```powershell
-   git clone https://github.com/hunterdjacobson/bird-call-quiz-ten.git
+   git clone https://github.com/hunterdjacobson/bird-call-quiz.git
    ```
 2. Navigate to the frontend directory:
    ```powershell
