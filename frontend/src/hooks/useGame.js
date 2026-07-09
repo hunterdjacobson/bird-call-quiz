@@ -23,6 +23,7 @@ function useGame() {
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
+  const [birdStats, setBirdStats] = useState({});
 
   // Lazy initialize best streak from localStorage
   const [bestStreak, setBestStreak] = useState(() => {
@@ -72,6 +73,18 @@ function useGame() {
 
     setResult(resultObj);
 
+    // Update bird analytics locally
+    setBirdStats(prev => {
+      const current = prev[round.targetId] || { correct: 0, incorrect: 0 };
+      return {
+        ...prev,
+        [round.targetId]: {
+          correct: current.correct + (isCorrect ? 1 : 0),
+          incorrect: current.incorrect + (isCorrect ? 0 : 1)
+        }
+      };
+    });
+
     if (isCorrect) {
       setScore(prev => prev + 1);
       setStreak(prevStreak => {
@@ -100,6 +113,13 @@ function useGame() {
     nextRound(level);
   }, [nextRound]);
 
+  /**
+   * Resets the accumulated bird stats.
+   */
+  const resetStats = useCallback(() => {
+    setBirdStats({});
+  }, []);
+
   return {
     round,
     result,
@@ -108,9 +128,11 @@ function useGame() {
     bestStreak,
     selectedId,
     difficulty,
+    birdStats,
     submitAnswer,
     nextRound,
-    setDifficultyLevel
+    setDifficultyLevel,
+    resetStats
   };
 }
 
