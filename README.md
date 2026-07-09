@@ -59,7 +59,7 @@ Follow these steps in PowerShell to run the React frontend app locally:
 
 1. Clone the repository:
    ```powershell
-   git clone https://github.com/hunterdjacobson/bird-call-quiz.git
+   git clone https://github.com/hunterdjacobson/bird-call-quiz-ten.git
    ```
 2. Navigate to the frontend directory:
    ```powershell
