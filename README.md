@@ -39,6 +39,18 @@ This project is built as a fully static, serverless web app because it is a casu
 
 ---
 
+## Analytics Dashboard (WIP)
+
+To help players review their learning and study bird calls, the app includes a comprehensive **Analytics** dashboard:
+
+- **Encountered Species Tracker**: Tracks how many species you have heard/encountered out of the total available in the quiz bank.
+- **Accuracy & Strengths**: Shows overall guessing accuracy, your top-performing species, and your struggling species.
+- **Search & Filter**: Search all birds by common name, scientific name, or family. Filter by category, including *Encountered*, *Unplayed*, *Mastered* (accuracy >= 80%), and *Struggling* (accuracy < 50%).
+- **Interactive Practice**: Expand any bird's card to view its photo, read its fun fact, and play its call directly from the dashboard.
+- **Session Stats**: All stats are computed and updated dynamically in-memory **per session**, and can be reset at any time using the **Reset Stats** button.
+
+---
+
 ## How the Quiz Bank Is Built
 
 The quiz bank is generated offline using Python scripts that query external APIs and merge the results into a static database file.
