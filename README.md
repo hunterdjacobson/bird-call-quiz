@@ -8,7 +8,7 @@ The Bird Call Guessing Game is a client-side web application that plays real bir
 
 ---
 
-## Why There's No Backend
+## No Backend
 
 This project is built as a fully static, serverless web app because it is a casual trivia game with no sensitive state or proprietary data worth protecting. Instead of deploying a typical FastAPI backend on Render—which would introduce cold starts, database management, and maintenance overhead—the entire game logic is executed directly in the browser. The quiz bank is generated offline, enabling us to ship static HTML, JS, CSS, and JSON data files files that run instantly, cost nothing to host, and scale infinitely without any server resource constraints.
 
