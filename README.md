@@ -47,7 +47,7 @@ To help players review their learning and study bird calls, the app includes a c
 - **Accuracy & Strengths**: Shows overall guessing accuracy, your top-performing species, and your struggling species.
 - **Search & Filter**: Search all birds by common name, scientific name, or family. Filter by category, including *Encountered*, *Unplayed*, *Mastered* (accuracy >= 80%), and *Struggling* (accuracy < 50%).
 - **Interactive Practice**: Expand any bird's card to view its photo, read its fun fact, and play its call directly from the dashboard.
-- **Session Stats**: All stats are computed and updated dynamically in-memory **per session**, and can be reset at any time using the **Reset Stats** button.
+- **Session Stats**: All stats are computed and updated dynamically in-memory per session, and can be reset at any time using the **Reset Stats** button.
 
 ---
 
